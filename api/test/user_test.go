@@ -14,7 +14,9 @@ import (
 
 var (
 	wageArray = []string{
-		"http://localhost:8080/user",
+		//"http://localhost:8080/user",
+		//"http://localhost:8080/login/lcq",
+		"http://localhost:8080/registerlcq/pass1234",
 	}
 )
 
@@ -30,9 +32,12 @@ func query(t *testing.T, client *http.Client, url string) {
 	if err != nil {
 		panic(err)
 	}
+	reqest.Header.Set("user","李长全")
+	reqest.Header.Set("password","112233")
 	//处理返回
 	response, _ := client.Do(reqest)
-	defer response.Body.Close()
+	defer func() {
+		response.Body.Close()}()
 	bytes, _ := ioutil.ReadAll(response.Body)
 	//解析list
 	t.Log("result:", string(bytes))

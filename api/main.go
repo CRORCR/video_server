@@ -9,6 +9,8 @@ import (
 func RegisterHandlers()*httprouter.Router{
 	router:=httprouter.New()
 	router.POST("/user",CreateUser)
+	router.POST("/login:name",Login)
+	router.POST("/register:name/pass:pass",Register)
 	return router
 }
 /**
