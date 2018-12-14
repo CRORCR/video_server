@@ -10,6 +10,7 @@ import (
 type middleWareHandler struct {
 	r *httprouter.Router
 }
+
 //实现http.Handle接口 实现serverHTTP
 func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//检查session合法性

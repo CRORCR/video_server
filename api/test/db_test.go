@@ -45,7 +45,7 @@ func (u *User) Insert() error {
 }
 
 func TestVV(t *testing.T) {
-	u:=&User{Name:"lcq"}
+	u := &User{Name: "lcq"}
 	_, e := engine.Table("user").Get(u)
 	fmt.Println("get user", e)
 	fmt.Println(u)

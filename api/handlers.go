@@ -13,7 +13,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-
 func Login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	uname := p.ByName("user_name")
 	io.WriteString(w, uname)

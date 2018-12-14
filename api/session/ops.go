@@ -19,8 +19,8 @@ func init() {
 	sessionMap = &sync.Map{}
 }
 
-func nowInMilli() int64{
-	return time.Now().UnixNano()/1000000
+func nowInMilli() int64 {
+	return time.Now().UnixNano() / 1000000
 }
 
 func deleteExpiredSession(sid string) {
@@ -34,7 +34,7 @@ func LoadSessionsFromDB() {
 		return
 	}
 
-	r.Range(func(k, v interface{}) bool{
+	r.Range(func(k, v interface{}) bool {
 		ss := v.(*defs.SimpleSession)
 		sessionMap.Store(k, ss)
 		return true
@@ -46,21 +46,21 @@ func GenerateNewSessionId(un string) string {
 	ct := nowInMilli()
 	ttl := ct + 30*60*1000 //30分钟毫秒数
 
-	ss:=&defs.SimpleSession{Username:un,TTL:ttl}
-	sessionMap.Store(id,ss) //存储session map中
-	dbops.InsertSessionId(id,ttl,un) //插入数据库中
+	ss := &defs.SimpleSession{Username: un, TTL: ttl}
+	sessionMap.Store(id, ss)           //存储session map中
+	dbops.InsertSessionId(id, ttl, un) //插入数据库中
 	return id
 }
 
 func IsSessionExpired(sid string) (string, bool) {
 	ss, ok := sessionMap.Load(sid)
-	if ok{
+	if ok {
 		ct := nowInMilli()
-		if ss.(*defs.SimpleSession).TTL<ct{
+		if ss.(*defs.SimpleSession).TTL < ct {
 			deleteExpiredSession(sid) //如果过期,就清除session,清除db
-			return "",true
+			return "", true
 		}
-		return ss.(*defs.SimpleSession).Username,false
+		return ss.(*defs.SimpleSession).Username, false
 	}
-	return "",true
+	return "", true
 }

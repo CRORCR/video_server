@@ -6,12 +6,13 @@ import (
 )
 
 var (
-	dbConn *sql.DB
-	err error
-	dataSourceName  = "root:root@tcp(127.0.0.1:3306)/video?charset=utf8"
+	dbConn         *sql.DB
+	err            error
+	dataSourceName = "root:root@tcp(127.0.0.1:3306)/video?charset=utf8"
 )
+
 //使用init,每次当前包被调用,都会调用init函数
-func init(){
+func init() {
 	dbConn, err = sql.Open("mysql", dataSourceName)
 	if err != nil {
 		panic("DB open failed")

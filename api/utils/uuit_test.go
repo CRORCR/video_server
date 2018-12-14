@@ -13,11 +13,11 @@ import (
  */
 
 func TestNewUUID(t *testing.T) {
-	uuid,_ := NewUUID()
+	uuid, _ := NewUUID()
 	fmt.Println(uuid)
 }
 
 func TestTime(t *testing.T) {
-	ctime:=time.Now().Format("Jan 02 2006,15:04:05")
+	ctime := time.Now().Format("Jan 02 2006,15:04:05")
 	fmt.Println(ctime)
 }

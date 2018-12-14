@@ -26,12 +26,11 @@ func TestMain(m *testing.M) {
 	//clearTable()
 }
 
-
 func TestUserWorkFlow(t *testing.T) {
-	t.Run("add",testAddUser)   //添加一个用户
-	t.Run("get",testGetUser)   //查询这个用户
-	t.Run("del",testDelteUser) //删除这个用户
-	t.Run("reg",testRegetUser) //再次查询这个用户
+	t.Run("add", testAddUser)   //添加一个用户
+	t.Run("get", testGetUser)   //查询这个用户
+	t.Run("del", testDelteUser) //删除这个用户
+	t.Run("reg", testRegetUser) //再次查询这个用户
 }
 
 func testAddUser(t *testing.T) {
@@ -63,7 +62,6 @@ func testRegetUser(t *testing.T) {
 }
 
 var tempvid string
-
 
 func TestVideoWorkFlow(t *testing.T) {
 	clearTable()
@@ -98,7 +96,7 @@ func testDeleteVideoInfo(t *testing.T) {
 
 func testRegetVideoInfo(t *testing.T) {
 	vi, err := GetVideoInfo(tempvid)
-	if err != nil || vi != nil{
+	if err != nil || vi != nil {
 		t.Errorf("Error of RegetVideoInfo: %v", err)
 	}
 }
@@ -110,8 +108,8 @@ func testRegetVideoInfo(t *testing.T) {
  */
 func TestComments(t *testing.T) {
 	clearTable()
-	t.Run("AddUser", testAddUser) //添加用户
-	t.Run("AddCommnets", testAddComments) //添加评论
+	t.Run("AddUser", testAddUser)           //添加用户
+	t.Run("AddCommnets", testAddComments)   //添加评论
 	t.Run("ListComments", testListComments) //查询评论
 }
 
