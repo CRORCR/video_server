@@ -103,11 +103,16 @@ func testRegetVideoInfo(t *testing.T) {
 	}
 }
 
+/**
+ * @desc   : 评论测试
+ * @author : Ipencil
+ * @date   : 2018/12/13
+ */
 func TestComments(t *testing.T) {
 	clearTable()
-	t.Run("AddUser", testAddUser)
-	t.Run("AddCommnets", testAddComments)
-	t.Run("ListComments", testListComments)
+	t.Run("AddUser", testAddUser) //添加用户
+	t.Run("AddCommnets", testAddComments) //添加评论
+	t.Run("ListComments", testListComments) //查询评论
 }
 
 func testAddComments(t *testing.T) {
@@ -124,8 +129,9 @@ func testAddComments(t *testing.T) {
 
 func testListComments(t *testing.T) {
 	vid := "12345"
-	from := 1514764800
-	to, _ := strconv.Atoi(strconv.FormatInt(time.Now().UnixNano()/1000000000, 10))
+	from := 1514764800 //开始时间
+	//int64 转 string 再转int
+	to, _ := strconv.Atoi(strconv.FormatInt(time.Now().UnixNano()/1000000000, 10)) //结束时间
 
 	res, err := ListComments(vid, from, to)
 	if err != nil {

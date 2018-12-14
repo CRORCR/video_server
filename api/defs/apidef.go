@@ -5,14 +5,19 @@ package defs
  * @author Ipencil
  * @create 2018/12/9
  */
-//request
- type UserCredential struct{
- 	Name string `json:"name"`
- 	Pwd string `json:"pwd"`
- }
+type UserCredential struct {
+	Username string `json:"user_name"`
+	Pwd string `json:"pwd"`
+}
 
-//video info
-type VideoInfo struct{
+//response
+type SignedUp struct {
+	Success bool `json:"success"`
+	SessionId string `json:"session_id"`
+}
+
+// Data model
+type VideoInfo struct {
 	Id string
 	AuthorId int
 	Name string

@@ -6,13 +6,33 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func RegisterHandlers()*httprouter.Router{
-	router:=httprouter.New()
-	router.POST("/user",CreateUser)
-	router.POST("/login:name",Login)
-	router.POST("/register:name/pass:pass",Register)
+//中间件处理器
+type middleWareHandler struct {
+	r *httprouter.Router
+}
+//实现http.Handle接口 实现serverHTTP
+func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	//检查session合法性
+	validateUserSession(r)
+
+	m.r.ServeHTTP(w, r)
+}
+
+func NewMiddleWareHandler(r *httprouter.Router) http.Handler {
+	m := &middleWareHandler{}
+	m.r = r
+	return m
+}
+
+//httprouter.Router 实际上实现了 go里面的http.Handle接口
+func RegisterHandlers() *httprouter.Router {
+	router := httprouter.New()
+	router.POST("/user", CreateUser)
+	router.POST("/user/:name", Login)
+	//router.POST("/register:name/pass:pass", Register)
 	return router
 }
+
 /**
  * @desc    用户操作
  * @author Ipencil
@@ -20,5 +40,6 @@ func RegisterHandlers()*httprouter.Router{
  */
 func main() {
 	r := RegisterHandlers()
-	http.ListenAndServe(":8080",r)
+	mh := NewMiddleWareHandler(r)
+	http.ListenAndServe(":8000", mh)
 }
