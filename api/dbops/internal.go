@@ -9,12 +9,12 @@ import (
 )
 
 /**
- * @desc    TODO
+ * @desc    内部使用
  * @author Ipencil
  * @create 2018/12/13
  */
 
-//写入session
+//写入db session
 func InsertSessionId(sid string, ttl int64, uname string) error {
 	ttlstr := strconv.FormatInt(ttl, 10) //int64 转string
 	stmtIns, err := dbConn.Prepare("insert into sessions (session_id,TTL,login_name) values(?,?,?,?)")

@@ -23,6 +23,7 @@ func nowInMilli() int64 {
 	return time.Now().UnixNano() / 1000000
 }
 
+//清除map session_id 清除db session_id
 func deleteExpiredSession(sid string) {
 	sessionMap.Delete(sid)
 	dbops.DeleteSession(sid)
@@ -41,6 +42,7 @@ func LoadSessionsFromDB() {
 	})
 }
 
+//创建session后存储map和db
 func GenerateNewSessionId(un string) string {
 	id, _ := utils.NewUUID()
 	ct := nowInMilli()
@@ -52,6 +54,7 @@ func GenerateNewSessionId(un string) string {
 	return id
 }
 
+//session id 是否过期
 func IsSessionExpired(sid string) (string, bool) {
 	ss, ok := sessionMap.Load(sid)
 	if ok {

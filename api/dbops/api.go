@@ -14,7 +14,7 @@ import (
  * @author Ipencil
  * @create 2018/12/9
  */
-func AddUserCredential(userName, pwd string) error {
+func AddUser(userName, pwd string) error {
 	//Prepare 预编译
 	stmtIns, err := dbConn.Prepare("insert into user (user_name,pwd) values (?,?)")
 	defer func() { stmtIns.Close() }()
@@ -29,7 +29,7 @@ func AddUserCredential(userName, pwd string) error {
 	return nil
 }
 
-func GetUserCredenttail(userName string) string {
+func GetUser(userName string) string {
 	stmtOut, er := dbConn.Prepare("select pwd from user where user_name=?")
 	defer func() { stmtOut.Close() }()
 	if er != nil {
@@ -54,7 +54,6 @@ func DeleteUser(userName, pwd string) error {
 }
 
 func AddNewVideo(aid int, name string) (*defs.VideoInfo, error) {
-	//创建uuid 在utils包内
 	vid, err := utils.NewUUID()
 	if err != nil {
 		return nil, err
@@ -84,6 +83,7 @@ func GetVideoInfo(vid string) (*defs.VideoInfo, error) {
 	var dct string
 	var name string
 
+	//查询记录,使用scan映射到对应类型
 	err = stmtOut.QueryRow(vid).Scan(&aid, &name, &dct)
 	defer func() { stmtOut.Close() }()
 	if err != nil && err != sql.ErrNoRows {

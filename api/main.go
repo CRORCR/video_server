@@ -6,12 +6,13 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//中间件处理器
+//中间件处理器    实现serverHTTP
 type middleWareHandler struct {
 	r *httprouter.Router
 }
 
-//实现http.Handle接口 实现serverHTTP
+//实现http.Handle接口   检查session后调用serverHttp
+//包一层,请求来了之后,先经过这个处理器
 func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//检查session合法性
 	validateUserSession(r)

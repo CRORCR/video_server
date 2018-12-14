@@ -34,14 +34,14 @@ func TestUserWorkFlow(t *testing.T) {
 }
 
 func testAddUser(t *testing.T) {
-	err := AddUserCredential("lcq", "123")
+	err := AddUser("lcq", "123")
 	if err != nil {
 		t.Errorf("Error of add user%v\n", err)
 	}
 }
 
 func testGetUser(t *testing.T) {
-	pwd := GetUserCredenttail("lcq")
+	pwd := GetUser("lcq")
 	if pwd == "" {
 		t.Errorf("Error of get user%v\n", err)
 	}
@@ -55,7 +55,7 @@ func testDelteUser(t *testing.T) {
 }
 
 func testRegetUser(t *testing.T) {
-	pwd := GetUserCredenttail("lcq")
+	pwd := GetUser("lcq")
 	if pwd != "" {
 		t.Errorf("Error of get user%v\n", pwd)
 	}
