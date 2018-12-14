@@ -1,4 +1,4 @@
-package streamserver
+package main
 
 /**
  * @desc    TODO
