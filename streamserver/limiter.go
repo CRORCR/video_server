@@ -9,7 +9,7 @@ import "log"
  */
 
 type ConnLimiter struct {
-	concurrentConn int
+	concurrentConn int  //上限
 	bucket  chan int
 }
 
@@ -25,14 +25,14 @@ func (cl *ConnLimiter) GetConn() bool {
 	if len(cl.bucket) >= cl.concurrentConn { //这个桶存储数据固定
 		return false
 	}
-	//桶未满
+	//桶未满 就存一个数据
 	cl.bucket <- 1
 	return true
 }
 
 //读取chan
 func (cl *ConnLimiter) ReleaseConn() {
-	c := <-cl.bucket
+	c := <-cl.bucket  //当连接关闭,就取出一个数据
 	log.Printf("remove bucket:%d", c)
 	return
 }

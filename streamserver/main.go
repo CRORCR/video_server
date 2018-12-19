@@ -28,6 +28,17 @@ func main() {
 }
 
 
+type middleWareHandler struct{
+	r *httprouter.Router
+	l *ConnLimiter
+}
+
+func NewMiddleWareHandler(r *httprouter.Router) http.Handler{
+	m:=middleWareHandler{}
+	m.r=r
+	m.l=""
+
+}
 
 
 
