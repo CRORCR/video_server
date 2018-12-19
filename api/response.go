@@ -14,7 +14,7 @@ import (
 
 //错误回报
 func sendErrorResponse(w http.ResponseWriter, errResp defs.ErrResponse) {
-	w.WriteHeader(errResp.HttpSC)  //错误码写入头信息
+	w.WriteHeader(errResp.HttpSC) //错误码写入头信息
 
 	resStr, _ := json.Marshal(&errResp.Error) //错误信息json格式返回
 	io.WriteString(w, string(resStr))

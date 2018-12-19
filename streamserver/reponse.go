@@ -11,8 +11,8 @@ import (
  * @create 2018/12/14
  */
 
- //只有出错了,才返回
- func sendErrorReponse(w http.ResponseWriter,sc int,errMsg string){
+//这个模块就是上传,下载  所以也只有出错了,才返回
+func sendErrorReponse(w http.ResponseWriter, sc int, errMsg string) {
 	w.WriteHeader(sc)
-	io.WriteString(w,errMsg)
- }
+	io.WriteString(w, errMsg)
+}

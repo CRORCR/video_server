@@ -9,8 +9,8 @@ import "log"
  */
 
 type ConnLimiter struct {
-	concurrentConn int  //上限
-	bucket  chan int
+	concurrentConn int //上限
+	bucket         chan int
 }
 
 //构造
@@ -32,7 +32,7 @@ func (cl *ConnLimiter) GetConn() bool {
 
 //读取chan
 func (cl *ConnLimiter) ReleaseConn() {
-	c := <-cl.bucket  //当连接关闭,就取出一个数据
+	c := <-cl.bucket //当连接关闭,就取出一个数据
 	log.Printf("remove bucket:%d", c)
 	return
 }

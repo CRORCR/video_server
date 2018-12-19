@@ -42,6 +42,6 @@ func RegisterHandlers() *httprouter.Router {
  */
 func main() {
 	r := RegisterHandlers()
-	mh := NewMiddleWareHandler(r)
+	mh := NewMiddleWareHandler(r) //中间件 注册到server中
 	http.ListenAndServe(":8000", mh)
 }
