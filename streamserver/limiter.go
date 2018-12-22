@@ -15,7 +15,7 @@ type ConnLimiter struct {
 
 //构造
 func NewConnLimiter(cc int) *ConnLimiter {
-	return &ConnLimiter{cc, make(chan int, cc)}
+	return &ConnLimiter{cc, make(chan int, 5)}
 }
 
 //buff chan :就是有缓存的chan

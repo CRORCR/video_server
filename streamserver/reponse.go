@@ -12,7 +12,7 @@ import (
  */
 
 //这个模块就是上传,下载  所以也只有出错了,才返回
-func sendErrorReponse(w http.ResponseWriter, sc int, errMsg string) {
+func sendErrorResponse(w http.ResponseWriter, sc int, errMsg string) {
 	w.WriteHeader(sc)
 	io.WriteString(w, errMsg)
 }
