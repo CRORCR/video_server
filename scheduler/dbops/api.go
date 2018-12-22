@@ -6,7 +6,7 @@ import (
 )
 
 /**
- * @desc    TODO
+ * @desc    任务接收,写入数据库
  * @author Ipencil
  * @create 2018/12/22
  */

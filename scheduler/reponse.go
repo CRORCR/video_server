@@ -1,7 +1,11 @@
-package scheduler
+package main
 
-/**
- * @desc    TODO
- * @author Ipencil
- * @create 2018/12/22
- */
+import (
+	"net/http"
+	"io"
+)
+
+func sendResponse(w http.ResponseWriter, sc int, resp string) {
+	w.WriteHeader(sc)
+	io.WriteString(w, resp)
+}

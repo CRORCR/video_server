@@ -15,3 +15,9 @@ defs:做一些定义
 通过api -->把video_id 存入数据库
 dispatcher-->从数据库获得video_id-->并存入dataChan
 exector-->从dataChan获得video_id-->删除视频
+
+1.任务下发 用户在前端删除视频
+2.调读器(scheduler),写入数据库
+3.启动timer
+4.timer 启动 runner
+5.执行删除,并清除数据库记录
