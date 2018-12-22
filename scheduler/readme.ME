@@ -1,3 +1,8 @@
+scheduler:调度器
+有时候通过普通restfulApi不能马上返回结果,就需要调度
+系统中有异步的任务,一般就会用到scheduler(例如:延时删除视频)
+
+
 这也是一个独立的restfulAPi
 api部分:
 dbops:任务操作数据库
@@ -5,3 +10,8 @@ trmain:初始化,运行调度
 task:真实运行的业务
 runner:主要逻辑处理
 defs:做一些定义
+
+
+通过api -->把video_id 存入数据库
+dispatcher-->从数据库获得video_id-->并存入dataChan
+exector-->从dataChan获得video_id-->删除视频
