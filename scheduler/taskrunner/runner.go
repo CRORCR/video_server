@@ -15,7 +15,7 @@ type Runner struct {
 	Dispatcher fn   //调度者
 	Executor   fn   //执行者
 }
-
+//调度
 func NewRunner(size int, longLived bool, d, e fn) *Runner {
 	return &Runner{
 		Controller: make(controllChan, 1),
@@ -30,6 +30,7 @@ func NewRunner(size int, longLived bool, d, e fn) *Runner {
 
 //调度
 func (r *Runner) StartDispatch() {
+	//()  这个括号不能丢,丢了只是声明,不会调用啊
 	defer func() {
 		if !r.LongLived {
 			close(r.Controller)
